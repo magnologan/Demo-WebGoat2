@@ -64,7 +64,7 @@ jobs:
 
     - name: Build WebGoat with Maven
 
-      run: mvn clean install
+      run:  clean install
 
     #- run: |
     #   make bootstrap
