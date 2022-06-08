@@ -1,16 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage ('Check-Git-Secrets') {
+    stage ('Source Composition Analysis') {
       steps {
-        sh 'docker run gesellix/trufflehog --json https://github.com/devopsadmin12/Demo-WebGoat.git > trufflehog'
-        sh 'cat trufflehog'
+         sh 'rm owasp* || true'
+         sh 'wget "https://raw.githubusercontent.com/cehkunal/webapp/master/owasp-dependency-check.sh" '
+         sh 'chmod +x owasp-dependency-check.sh'
+         sh 'bash owasp-dependency-check.sh'
+         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
       }
     }
-    stage ('DAST') {
-      steps {
-        sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://10.0.2.15:8081/WebGoat || true"
-      }
-   }
  }
 }
