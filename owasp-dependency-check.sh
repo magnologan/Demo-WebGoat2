@@ -25,6 +25,5 @@ docker run --rm \
     --format "ALL" \
     --project "My OWASP Dependency Check Project" \
     --out /report
-    # Use suppression like this: (/src == $pwd)
-    # --suppression "/src/security/dependency-check-suppression.xml"
+    
     
