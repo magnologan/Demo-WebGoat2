@@ -9,6 +9,12 @@ pipeline {
             ''' 
       }
     }
+    
+    stage("Git Checkout'){
+    steps{
+       git url: 'https://github.com/devopsadmin12/Demo-WebGoat.git'
+     }
+    }
      
     stage ('Source Composition Analysis') {
       steps {
