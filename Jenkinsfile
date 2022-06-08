@@ -15,7 +15,7 @@ pipeline {
          sh 'wget "https://raw.githubusercontent.com/devopsadmin12/Demo-WebGoat/master/owaspdependencycheck.sh" '
          sh 'chmod +x owaspdependencycheck.sh'
          sh 'bash owaspdependencycheck.sh'
-         sh '/{var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /{var/lib/jenkins}/reports/dependency-check-report --prettyPrint''
+         sh '/{var/lib/jenkins/dependency-check/bin/dependency-check.sh --scan `pwd` --format JSON --out /{var/lib/jenkins}/reports/dependency-check-report --prettyPrint'
       }
     }
  }
