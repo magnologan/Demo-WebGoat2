@@ -10,7 +10,7 @@ pipeline {
       }
     }
     
-    stage ('Check-Git-Secrets') {
+    stage ('Secret Scanning') {
       steps {
         sh 'rm trufflehog || true'
         sh 'docker run gesellix/trufflehog --json https://github.com/devopsadmin12/Demo-WebGoat.git > trufflehog'
