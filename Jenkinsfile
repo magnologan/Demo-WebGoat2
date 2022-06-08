@@ -17,13 +17,17 @@ pipeline {
       }
     }
     
-    stage ('SAST') {
-      steps {
-        withSonarQubeEnv('sonarqube') {
-          sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
-        }
-      }
+    stage('SAST') {
+    def scannerHome = tool 'sonarqube';
+    withSonarQubeEnv('sonarqube') {
+      sh "${scannerHome}/bin/sonar-scanner \
+      -D sonar.login=admin \
+      -D sonar.password=Welcome@123 \
+      -D sonar.projectKey=Demo \
+      -D sonar.exclusions=vendor/**,resources/**,**/*.java \
+      -D sonar.host.url=http://10.0.2.15:9000/"
     }
+  }
     
     stage ('Source Composition Analysis') {
       steps {
