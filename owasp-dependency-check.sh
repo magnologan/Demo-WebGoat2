@@ -27,5 +27,3 @@ docker run --rm \
     --out /report
     # Use suppression like this: (/src == $pwd)
     # --suppression "/src/security/dependency-check-suppression.xml"
-    
-    
