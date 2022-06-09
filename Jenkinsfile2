@@ -1,7 +1,7 @@
 pipeline {
   agent any 
   stages {
-  stage ('SCA') {
+  
   stage ('Check-Git-Secrets') {
       steps {
         sh 'rm trufflehog || true'
@@ -9,6 +9,7 @@ pipeline {
         sh 'cat trufflehog'
       }
     }
+    stage ('SCA') {
       steps {
          sh 'rm owasp* || true'
          sh 'wget "https://raw.githubusercontent.com/devopsadmin12/Demo-WebGoat/master/owasp-dependency-check.sh" '
