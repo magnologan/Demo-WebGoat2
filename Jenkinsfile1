@@ -11,7 +11,7 @@ pipeline {
   
   stage ('DAST') {
       steps {
-         sh ' "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://10.0.2.15:8081/WebGoat/" || true'
+         sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t http://10.0.2.15:8081/WebGoat/ || true'
         }
       }
     
