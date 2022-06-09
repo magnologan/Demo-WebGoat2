@@ -1,0 +1,22 @@
+pipeline {
+  agent any 
+  stages {
+  
+  stage ("Git checkout"){
+			steps {
+				git branch: "master",
+					url: "https://github.com/devopsadmin12/Demo-WebGoat.git"
+          }
+         } 
+  
+  stage ('SAST') {
+      steps {
+        withSonarQubeEnv('sonarqube') {
+          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+          sh 'cat target/sonar/report-task.txt'
+        }
+      }
+    }
+    
+  }
+}
