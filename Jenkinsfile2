@@ -9,14 +9,14 @@ pipeline {
         sh 'cat trufflehog'
       }
     }
-    stage ('SCA') {
-      steps {
-         sh 'rm owasp* || true'
-         sh 'wget "https://raw.githubusercontent.com/devopsadmin12/Demo-WebGoat/master/owasp-dependency-check.sh" '
-         sh 'chmod +x owasp-dependency-check.sh'
-         sh 'bash owasp-dependency-check.sh'
-         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml || true' 
-         }
-      }
-   }
- }
+    stage ('OWASP Dependency-Check Vulnerabilities') {  
+    steps {  
+     withMaven(maven : 'mvn-3.6.3') {  
+      sh 'mvn dependency-check:check'  
+      }  
+     dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'  
+    }  
+   }  
+   
+  }
+}
