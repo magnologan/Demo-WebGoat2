@@ -1,8 +1,7 @@
 pipeline {
   agent any 
   stages {
-stage('Vulnerability Check') {
-          stages {
+
             stage('OWASP dependency-check') {
               agent {
                 dockerfile {
@@ -21,3 +20,5 @@ stage('Vulnerability Check') {
             }
           }
         }
+       }
+      }
