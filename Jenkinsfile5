@@ -1,0 +1,23 @@
+pipeline {
+  agent any 
+  stages {
+stage('Vulnerability Check') {
+          stages {
+            stage('OWASP dependency-check') {
+              agent {
+                dockerfile {
+                  filename 'owasp-dependency-check.sh'
+                }
+              }
+              steps {
+                sh '/dependency-check/bin/dependency-check.sh --out ./report --scan /app --format HTML --format JSON --prettyPrint --enableExperimental --disableAssembly'
+              }
+              post {
+                always {
+                  archiveArtifacts "report/dependency-check-report.json"
+                  archiveArtifacts "report/dependency-check-report.html"
+                }
+              }
+            }
+          }
+        }
