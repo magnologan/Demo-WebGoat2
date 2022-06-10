@@ -9,7 +9,12 @@ pipeline {
           }
          } 
   
-  stage ('SAST') {
+ stage('Build'){
+            steps{
+                sh 'clean package'
+            }
+         }
+ stage ('SAST') {
       steps {
         withSonarQubeEnv('sonarqube') {
           sh 'mvn sonar:sonar'
